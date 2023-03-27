@@ -26,15 +26,15 @@
         <td><%= task.priority %></td>
         <td><%= link_to '詳細を確認する', task_path(task.id),class: "btn btn-outline-secondary" %></td>
         <td><%= link_to 'タスクを編集する', edit_task_path(task.id), class: "btn btn-outline-secondary" %></td>
-        <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除しますか' } %></td>
+        <td><%= link_to 'タスクを削除する', task_path(task.id),class: "btn btn-outline-secondary", method: :delete, data: { confirm: '本当に削除しますか' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<td><button type="button" class="btn-secondary"><%= link_to '新規作成画面', new_task_path %></button><br>
-<td><button type="button" class="btn-secondary"><%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %></button></td><br>
-<td><button type="button" class="btn-secondary"><%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %></button></td><br>
+<td><button type="button", class: "btn btn-secondary"><%= link_to '新規作成画面', new_task_path %></button><br>
+<td><button type="button", class: "btn btn-secondary"><%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %></button></td><br>
+<td><button type="button", class: "btn btn-secondary"><%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %></button></td><br>
 
 <%= paginate @tasks %>
 
