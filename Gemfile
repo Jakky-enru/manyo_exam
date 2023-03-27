@@ -13,6 +13,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+gem 'kaminari'
+gem 'bootstrap'
+gem 'bootstrap-sass', '~> 3.3.6'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
