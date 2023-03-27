@@ -3,8 +3,20 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.order(created_at: :desc)
+    @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
+    @tasks = Task.all.sort_deadline.page(params[:page]).per(5) if params[:sort_deadline]
+    @tasks = Task.all.sort_priority.page(params[:page]).per(5) if params[:sort_priority]
 
+    if params[:task].present?    
+      if params[:task][:name].present? && params[:task][:status].present?  
+        @tasks = Task.where('name LIKE ?', "%#{params[:task][:name]}%").page(params[:page]).per(5)
+        @tasks = @tasks.where(status: params[:task][:status]).page(params[:page]).per(5)
+      elsif params[:task][:name].present?                            
+        @tasks = Task.where('name LIKE ?', "%#{params[:task][:name]}%").page(params[:page]).per(5)
+      elsif params[:task][:status].present?                              
+        @tasks = Task.where(status: params[:task][:status]).page(params[:page]).per(5)
+      end
+    end
   end
 
   # GET /tasks/1
@@ -54,6 +66,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :content)
+      params.require(:task).permit(:name, :content, :deadline, :status, :priority)
     end
 end

@@ -3,12 +3,20 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
+        visit new_session_path
+        fill_in 'session_email', with: 'a@gmail.com'
+        fill_in 'session_password', with: 'password1'
+        click_on 'Log in'
         visit new_task_path
         fill_in 'task_name', with:'タスク名'
         fill_in 'task_content', with:'タスク詳細'
+        fill_in 'task_deadline', with: Date.new(2023, 3, 10)
+        select '着手中', from: 'task_status'
         click_on '登録する'
         expect(page).to have_content 'タスク名'
         expect(page).to have_content 'タスク詳細'
+        expect(page).to have_content '2023-03-10'
+        expect(page).to have_content '着手中'
       end
     end
   end
