@@ -16,7 +16,7 @@ gem 'net-pop'
 gem 'kaminari'
 gem 'bootstrap'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
