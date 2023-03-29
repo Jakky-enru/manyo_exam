@@ -1,7 +1,14 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
-
+<% @user.tasks.each do |task| %>
+  <%= task.name %>
+  <%= task.content %>
+  <%= task.created_at %>
+  <%= task.deadline %>
+  <%= task.status %>
+  <%= task.priority %>
+<% end %>
 
 <p>
 <% if @user == current_user %>
