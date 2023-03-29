@@ -14,13 +14,13 @@
   <tbody>
     <% @user.tasks.each do |t| %>
       <tr>
-        <td><div ><%= t.title %></td>
+        <td><%= t.name %></td>
         <td><%= t.content %></td>
         <td><%= t.created_at %></td>
-        <td><%= t.limit %></td>
+        <td><%= t.deadline %></td>
         <td><%= t.status %></td>
-        <td><%= t.priority %></td></div>
-        <td><%= t.user.name %></td></div>
+        <td><%= t.priority %></td>
+        <td><%= t.user.name %></td>
         <td><div class ='btn btn-light'><%= link_to "詳細を確認", task_path(t.id) %></div></td>
         <td><div class ='btn btn-light'><%= link_to "編集", edit_task_path(t.id) %></div></td>
         <td><div class ='btn btn-light'><%= link_to "削除", task_path(t.id), method: :delete, data: {confirm: "本当に削除しますか?"} %></div></td>
