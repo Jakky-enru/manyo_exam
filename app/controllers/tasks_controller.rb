@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
+    @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(5)
     @tasks = Task.all.sort_deadline.page(params[:page]).per(5) if params[:sort_deadline]
     @tasks = Task.all.sort_priority.page(params[:page]).per(5) if params[:sort_priority]
 
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
-    
+    @task.user_id = current_user.id
     if @task.save
       redirect_to task_path(@task.id), notice: 'タスクを作成しました'
     else
