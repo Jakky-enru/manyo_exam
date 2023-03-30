@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ログイン機能', type: :system do
-  let!(:user2) { FactoryBot.create(:user2) }
   let!(:user) { FactoryBot.create(:user) }
+  let!(:user2) { FactoryBot.create(:user2) }
 
   describe 'ユーザー登録機能' do
     context 'ユーザーを新規登録した場合' do
